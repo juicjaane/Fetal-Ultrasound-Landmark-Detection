@@ -11,22 +11,23 @@ The goal of this project is to automate the extraction of standard fetal biometr
 ### Directory Structure
 
 ```
-Submission_Output/
-├── task_1_landmark_detection/  # Solution for Task 1 (Heatmap Regression)
-│   ├── models/                 # Saved model weights
-│   ├── pythonscripts/          # Source code (trainer, models, utils)
-│   ├── report/                 # Detailed analysis reports
-│   └── README.md               # Task-specific documentation
-├── task_2_segmentation/        # Solution for Task 2 (Boundary Segmentation)
-│   ├── models/                 # Saved model weights
-│   ├── pythonscripts/          # Source code (geometry, inference, train)
-│   ├── report/                 # Detailed analysis reports
-│   └── README.md               # Task-specific documentation
-├── requirements.txt            # Python dependencies
-└── README.md                   # This file
+.
+├── Submission_Output/
+│   ├── task_1_landmark_detection/  # Solution for Task 1 (Heatmap Regression)
+│   │   ├── models/                 # Saved model weights
+│   │   ├── pythonscripts/          # Source code (trainer, models, utils)
+│   │   ├── report/                 # Detailed analysis reports
+│   │   └── README.md               # Task-specific documentation
+│   ├── task_2_segmentation/        # Solution for Task 2 (Boundary Segmentation)
+│   │   ├── models/                 # Saved model weights
+│   │   ├── pythonscripts/          # Source code (geometry, inference, train)
+│   │   ├── report/                 # Detailed analysis reports
+│   │   └── README.md               # Task-specific documentation
+│   └── requirements.txt            # Python dependencies
+├── datasets/                       # Datasets for Task 1 and Task 2
+├── images/                         # Project plots and figures
+└── README.md                       # This file
 ```
-
-*(Note: Data and images are expected to be in `../datasets` and `../images` relative to this folder during development)*
 
 ---
 
@@ -41,7 +42,7 @@ The dataset consists of fetal ultrasound images with varying contrast and noise 
 
 | Intensity Distribution | Contrast Analysis | Low vs High Contrast | Foreground Ratio |
 |:---:|:---:|:---:|:---:|
-| ![Fig1](../images/fig1.png) | ![Fig2](../images/fig2.png) | ![Fig3](../images/fig3.png) | ![Fig4](../images/fig4.png) |
+| ![Fig1](images/fig1.png) | ![Fig2](images/fig2.png) | ![Fig3](images/fig3.png) | ![Fig4](images/fig4.png) |
 | *Fig 1: Global Pixel Intensity* | *Fig 2: Per-image Mean/Std* | *Fig 3: Contrast Variability* | *Fig 4: Foreground Ratio* |
 
 ### Label Quality and Anomalies
@@ -52,7 +53,7 @@ A critical discovery during EDA was the presence of noisy and inconsistent label
 
 | Landmark Density | Orientation Angles | Anomaly Scores | Improper Labels | Label Swapping |
 |:---:|:---:|:---:|:---:|:---:|
-| ![Fig5](../images/fig5.png) | ![Fig6](../images/fig6.png) | ![Fig7](../images/fig7.png) | ![Fig8](../images/fig8.png) | ![Fig9](../images/fig9.png) |
+| ![Fig5](images/fig5.png) | ![Fig6](images/fig6.png) | ![Fig7](images/fig7.png) | ![Fig8](images/fig8.png) | ![Fig9](images/fig9.png) |
 | *Fig 5: Landmark Distribution* | *Fig 6: Orientation Angle* | *Fig 7: Anomaly Detection* | *Fig 8: Improper Example* | *Fig 9: Orientation & Orthogonality* |
 
 ---
@@ -68,7 +69,7 @@ A critical discovery during EDA was the presence of noisy and inconsistent label
 
 | Coordinate Regression Training | Visual Results (Coord Reg) |
 |:---:|:---:|
-| ![Fig10](../images/fig10.png) | ![Fig11](../images/fig11.png) |
+| ![Fig10](images/fig10.png) | ![Fig11](images/fig11.png) |
 | *Fig 10: Loss Curve* | *Fig 11: Prediction vs GT* |
 
 2.  **Advanced: Heatmap Regression (HRNet / U-Net)**
@@ -79,7 +80,7 @@ A critical discovery during EDA was the presence of noisy and inconsistent label
 
 | HRNet Training | Heatmap Visualization 1 | Heatmap Visualization 2 |
 |:---:|:---:|:---:|
-| ![Fig12](../images/fig12.png) | ![Fig13](../images/fig13.png) | ![Fig14](../images/fig14.png) |
+| ![Fig12](images/fig12.png) | ![Fig13](images/fig13.png) | ![Fig14](images/fig14.png) |
 | *Fig 12: Heatmap Loss* | *Fig 13: Accurate Localization* | *Fig 14: Handling Ambiguity* |
 
 ---
@@ -95,7 +96,7 @@ Initial attempts at standard semantic segmentation (Foreground vs Background) fa
 
 | Ultrasound vs Mask | Skull Area | Skull Eccentricity | Orientation Distribution |
 |:---:|:---:|:---:|:---:|
-| ![Fig15](../images/fig15.png) | ![Fig16](../images/fig16.png) | ![Fig17](../images/fig17.png) | ![Fig18](../images/fig18.png) |
+| ![Fig15](images/fig15.png) | ![Fig16](images/fig16.png) | ![Fig17](images/fig17.png) | ![Fig18](images/fig18.png) |
 | *Fig 15: Boundary Nature* | *Fig 16: Area Distribution* | *Fig 17: Shape Analysis* | *Fig 18: Orientation Bias* |
 
 ### Hypotheses & Experiments
@@ -108,25 +109,27 @@ We tested 4 specific hypotheses to improve boundary detection:
 
 | Preprocessing Comparison | Model Predictions | Hypothesis Comparison | Hypothesis 2/3 Result |
 |:---:|:---:|:---:|:---:|
-| ![Fig19](../images/fig19.png) | ![Fig20](../images/fig20.png) | ![Fig21](../images/fig21.png) | ![Fig22](../images/fig22.png) |
+| ![Fig19](images/fig19.png) | ![Fig20](images/fig20.png) | ![Fig21](images/fig21.png) | ![Fig22](images/fig22.png) |
 | *Fig 19: Preprocessing* | *Fig 20: Predicted Boundaries* | *Fig 21: Model Comparison* | *Fig 22: Model Metrics* |
 
 ---
 
 ## Usage Instructions
 
-All commands are to be run from the `Submission_Output` directory.
+All commands are to be run from the projects root directory (or adjusted accordingly). However, the scripts are designed to be run as modules. 
+To ensure consistent imports, it is recommended to run commands **from inside** the `Submission_Output` directory.
 
 ### Prerequisites
 Install dependencies:
 ```bash
-pip install -r requirements.txt
+pip install -r Submission_Output/requirements.txt
 ```
 
 ### Task 1: Landmark Detection
 
 **Training:**
 ```bash
+cd Submission_Output
 python -m task_1_landmark_detection.pythonscripts.trainer \
     --data_csv ../datasets/task_1/role_challenge_dataset_ground_truth.csv \
     --image_dir ../datasets/task_1/images
@@ -134,6 +137,7 @@ python -m task_1_landmark_detection.pythonscripts.trainer \
 
 **Evaluation:**
 ```bash
+cd Submission_Output
 python -m task_1_landmark_detection.pythonscripts.tester \
     --data_csv ../datasets/task_1/role_challenge_dataset_ground_truth.csv \
     --image_dir ../datasets/task_1/images \
@@ -144,6 +148,7 @@ python -m task_1_landmark_detection.pythonscripts.tester \
 
 **Training (Select Hypothesis):**
 ```bash
+cd Submission_Output
 # Baseline
 python -m task_2_segmentation.pythonscripts.train \
     --data_dir ../datasets/task_2/images \
@@ -159,9 +164,15 @@ python -m task_2_segmentation.pythonscripts.train \
 
 **Evaluation & Visualization:**
 ```bash
+cd Submission_Output
+# Evaluate best model
 python -m task_2_segmentation.pythonscripts.test \
     --data_dir ../datasets/task_2/images \
     --model_path task_2_segmentation/models/hyp3_augmented_boundary_unet.pt \
     --use_postprocessing \
     --visualize
 ```
+
+---
+
+*Note: The commands assume you are inside the `Submission_Output` folder so that python finds the packages correctly. The data paths (`../datasets`) refer to the folder one level up.*
