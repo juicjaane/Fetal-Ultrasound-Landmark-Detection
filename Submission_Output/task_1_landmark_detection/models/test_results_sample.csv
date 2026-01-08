@@ -1,0 +1,2 @@
+image_name,BPD1_err,BPD2_err,OFD1_err,OFD2_err,mean_err,gt_bpd,pred_bpd,bpd_err,gt_ofd,pred_ofd,ofd_err
+000_HC.png,113.83911,254.70206,195.38376,184.63414,187.1397705078125,245.28732,5.30637,239.98096,154.69232,123.47129,31.221031

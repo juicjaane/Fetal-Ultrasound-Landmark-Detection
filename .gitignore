@@ -1,0 +1,27 @@
+# Datasets
+datasets/
+TASKA/
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+
+# Large files logic:
+# If you intend to commit models, keep them. Otherwise uncomment below:
+# *.pth
+# *.pt
